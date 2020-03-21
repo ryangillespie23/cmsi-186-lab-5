@@ -28,11 +28,15 @@ public class PodTest extends TestSuite {
             }),
             new Test("LogarithmicPod", () -> {
                 var pod = new LogarithmicPod("pod6", 3.0, 5.2);
-                expectWithin(pod.distanceTraveled(10, 20, 32768), 98.6, 0.1);
+                expectWithin(pod.distanceTraveled(10, 20, 32768), 132.1, 0.2);
+            }),
+            new Test("A SinePod", () -> {
+                var pod = new SinePod("pod7", 1.0, 1.0, 0.0);
+                expectWithin(pod.distanceTraveled(Math.PI, 10 * Math.PI, 32768), -2.0, 0.2);
             }),
             new Test("A strange pod", () -> {
-                var pod = new Pod("pod7", t -> (t/5) + Math.sin(t) * Math.log(t + 3));
-                expectWithin(pod.distanceTraveled(10, 20, 4096), 13.29, 0.3);
+                var pod = new Pod("pod8", t -> (t/5) + Math.sin(t) * Math.log(t + 3));
+                expectWithin(pod.distanceTraveled(10, 20, 4096), 26.6, 0.2);
             }),
         };
     }
